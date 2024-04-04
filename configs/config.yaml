@@ -1,0 +1,30 @@
+# Configuration file for pyflow suite.
+
+# This file only contains a selection of most common options.
+# All new entries can be treated on /Users/tkremer/Code/wellies_test_project/suite/config.py:Config
+
+# wellies support simple python string formatting and have some global names available.
+# This will be treated accordingly by wellies.parse_yaml:
+
+# name: mysuite
+# suite_dir: "{HOME}/{name}"
+
+# Available names are:
+# USER, HOME, PERM, SCRATCH, PWD, HPCPERM, TODAY and YESTERDAY
+
+# -------- Suite deployment configuration -------------------------------------
+# host options
+suite_name: "wellies_test_project"
+hostname: "localhost"
+user: "{USER}"
+
+# server options
+deploy_dir: "/Users/tkremer/.local/pyflow-wellies/wellies_test_project/"
+job_out: "%ECF_HOME%"
+workdir: "/Users/tkremer/.local/pyflow-wellies/wellies_test_project/tmp"
+
+output_root: "/Users/tkremer/.local/pyflow-wellies/wellies_test_project/out"
+
+# ---------- Specific optionals -----------------------------------------------
+# add your project's specific variables and options here
+
