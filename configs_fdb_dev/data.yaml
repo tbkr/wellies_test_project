@@ -1,0 +1,58 @@
+# ---------- Data paths --------------------------------------------
+# example of path:
+#   - data_link:
+#       pre_script: "# Linking static data"
+#       type: link
+#       source: "path/to/dir"
+#       post_script: echo 'my custom data install command'
+#   - data_ecfs:
+#        type: ecfs
+#        source: "ec:/path/to/archive.tgz"
+#        post_script: "tar -xzvf archive.tgz ."
+#   - data_rsync: 
+#       type: rsync
+#       source: "remote:path/to/dir"
+#       rsync_options: "-avz"
+#   - data_git:
+#       type: git
+#       source: ssh://git.ecmwf.int/cefl/danu.git
+#       branch: develop
+#   - data_mars:
+#       type: mars
+#       request:
+#           class: od
+#           stream: oper ...
+#   - data_custom:
+#       type: custom
+#       post_script: /path/to/data/script/retrieval.sh
+static_data:
+    git_sample:
+        type: git
+        source: git@github.com:ecmwf/earthkit.git
+        branch: develop
+    grib_archival_sample_t:
+        type: mars
+        request:
+            "class": "od"
+            "stream": "oper"
+            "type": "an"
+            "expver": "0001"
+            "date": "${YESTERDAY}"
+            "time": "1200"
+            "param": 130
+            "levtype": "ml"
+            "levelist": 1
+            "step": 0
+    grib_archival_sample_uv:
+        type: mars
+        request:
+            "class": "od"
+            "stream": "oper"
+            "type": "an"
+            "expver": "0001"
+            "date": "${YESTERDAY}"
+            "time": "1200"
+            "param": [131.128, 132.128]
+            "levtype": "pl"
+            "levelist": [1, 2, 3, 5, 7, 10, 20, 30, 50, 70, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800, 900, 925, 950, 1000]
+            "step": 0

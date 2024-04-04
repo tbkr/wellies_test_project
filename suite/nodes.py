@@ -29,8 +29,11 @@ class MainFamily(pf.AnchorFamily):
 class MarsflowRetrievalFamily(pf.Family):
     def __init__(self, config, **kwargs):
         super().__init__(name='Admin', **kwargs)
+
+        host = pf.TroikaHost(name="fdbdev", user="fdbdev", troika_config="~/troika/config/troika.yml")
+
         with self:
-            pf.Task('marsadm_version', script='marsadm -command "version -long"')
+            pf.Task('marsadm_version', host=host, script='marsadm -command "version -long"')
 
 
 class MainSuite(pf.Suite):
@@ -57,8 +60,7 @@ class MainSuite(pf.Suite):
         }
 
         with self:
-
             f_init = InitFamily(config=config, inlimits=self.work)
             f_main = MainFamily(config=config, inlimits=self.work)
-            f_main = MarsflowRetrievalFamily(config=config, inlimits=self.work)
             f_main.triggers = f_init.complete
+            f_mars = MarsflowRetrievalFamily(config=config, inlimits=self.work)
